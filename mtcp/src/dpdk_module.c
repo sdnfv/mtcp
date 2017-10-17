@@ -770,7 +770,8 @@ dpdk_dev_ioctl(struct mtcp_thread_context *ctx, int nif, int cmd, void *argp)
 		m = dpc->cur_rx_m;
 		//if (m->next != NULL)
 		//	rte_prefetch0(rte_pktmbuf_mtod(m->next, void *));
-		iph = rte_pktmbuf_mtod_offset(m, struct iphdr *, sizeof(struct ether_hdr));
+		//iph = rte_pktmbuf_mtod_offset(m, struct iphdr *, sizeof(struct ether_hdr));
+		iph = (struct iphdr *)(rte_pktmbuf_mtod(m, char *) + sizeof(struct ether_hdr));
 		tcph = (struct tcphdr *)((u_char *)iph + (iph->ihl << 2));
 		payload = (uint8_t *)tcph + (tcph->doff << 2);
 
@@ -798,7 +799,8 @@ dpdk_dev_ioctl(struct mtcp_thread_context *ctx, int nif, int cmd, void *argp)
 		if ((dev_info[nif].tx_offload_capa & DEV_TX_OFFLOAD_TCP_CKSUM) == 0)
 			goto dev_ioctl_err;
 		m = dpc->wmbufs[eidx].m_table[len_of_mbuf - 1];
-		iph = rte_pktmbuf_mtod_offset(m, struct iphdr *, sizeof(struct ether_hdr));
+		//iph = rte_pktmbuf_mtod_offset(m, struct iphdr *, sizeof(struct ether_hdr));
+		iph = (struct iphdr *)(rte_pktmbuf_mtod(m, char *) + sizeof(struct ether_hdr));
 		tcph = (struct tcphdr *)((uint8_t *)iph + (iph->ihl<<2));
 		m->l2_len = sizeof(struct ether_hdr);
 		m->l3_len = (iph->ihl<<2);
