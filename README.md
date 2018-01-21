@@ -197,6 +197,22 @@ mTCP can be prepared in three ways.
 
 ***ONVM VERSION***
 
+Using onvm when running mTCP allows for single node (local) as well as multi-node setups. A local setup is useful when only 1 machine is available for the experiment. The onvm configurations are placed in the `.conf` files for mTCP applications. Example configurations are provided.
+
+**Multicore support**  
+To use multiple cores launch multiple instances of the application.  
+If 2 cores (0,1) are available it is possible to run 2 instances of epserver. To achieve this use the same `onvm_serv` value for both applications, and a unique `onvm_inst` value. This way onvm will split the packets between the 2 epservers based on the RSS hash of the packet.   
+```
+epserver1.conf
+onvm_serv = 1
+onvm_inst = 1
+
+epserver2.conf
+onvm_serv = 1 
+onvm_inst = 2
+```
+
+
 1. [Install openNetVM following these instructions](https://github.com/sdnfv/openNetVM/blob/master/docs/Install.md)
 
 2. Next bring the dpdk-registered interfaces up. This can be setup using:  
@@ -241,7 +257,7 @@ mTCP can be prepared in three ways.
    - epwget.conf for client-side configuration
    - you may write your own configuration file for your application
 
-6. Run the applications!  
+6. Run the applications!
 
 
 ***NETMAP VERSION***
