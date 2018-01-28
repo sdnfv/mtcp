@@ -211,7 +211,7 @@ epserver2.conf
 onvm_serv = 1 
 onvm_inst = 2
 ```
-
+**Before running the applications make sure than onvm_mgr is running.**
 
 1. [Install openNetVM following these instructions](https://github.com/sdnfv/openNetVM/blob/master/docs/Install.md)
 
@@ -230,6 +230,7 @@ onvm_inst = 2
 4. Setup mtcp library
     ```bash
 	# ./configure --with-dpdk-lib=$<path_to_dpdk> --with-onvm-lib=$<path_to_onvm_lib>
+	# e.g. ./configure --with-dpdk-lib=`echo $PWD`/dpdk --with-onvm-lib=`echo $ONVM_HOME`/onvm
 	# make
     ```
 
