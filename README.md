@@ -201,16 +201,8 @@ Using onvm when running mTCP allows for single node (local) as well as multi-nod
 
 **Multicore support**  
 To use multiple cores launch multiple instances of the application.  
-If 2 cores (0,1) are available it is possible to run 2 instances of epserver. To achieve this use the same `onvm_serv` value for both applications, and a unique `onvm_inst` value. This way onvm will split the packets between the 2 epservers based on the RSS hash of the packet.   
-```
-epserver1.conf
-onvm_serv = 1
-onvm_inst = 1
+If 2 cores (0,1) are available it is possible to run 2 instances of epserver. To achieve this use the same `onvm_serv` value for both applications. This way onvm will split the packets between the 2 epservers based on the RSS hash of the packet.   
 
-epserver2.conf
-onvm_serv = 1 
-onvm_inst = 2
-```
 **Before running the applications make sure than onvm_mgr is running.**
 
 1. [Install openNetVM following these instructions](https://github.com/sdnfv/openNetVM/blob/master/docs/Install.md)
