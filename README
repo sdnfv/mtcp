@@ -191,19 +191,8 @@ Example configurations are provided.
 **Multicore support**
 To use multiple cores launch multiple instances of the application.  
 If 2 cores (0,1) are available it is possible to run 2 instances of epserver. 
-To achieve this use the same `onvm_serv` value for both applications, and a unique `onvm_inst` value. 
+To achieve this use the same `onvm_serv` value for both applications.
 This way onvm will split the packets between the 2 epservers based on the RSS hash of the packet.   
-
-Example:
-______________
-epserver1.conf
-onvm_serv = 1
-onvm_inst = 1
-______________
-epserver2.conf
-onvm_serv = 1 
-onvm_inst = 2
-______________
 
 **Before running the applications make sure than onvm_mgr is running.**
 
